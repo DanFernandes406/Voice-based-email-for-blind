@@ -1,0 +1,106 @@
+{% load static %}
+<html>
+<head>
+	<title>Send Page</title>
+    <style> 
+        .inputClass { 
+            pointer-events: none;  
+        } 
+    </style>
+	 <link rel="stylesheet" href="{% static 'new.css'%}" />
+</head>
+<div id='aga'>
+<boby>
+	 <h2>SendEmail Page</h2>
+	<form action="/send" method="post" id="reg">
+	{% csrf_token %}
+	<audio controls autoplay>
+    <source src ="static/jumanji.ogg" type="audio/ogg">
+    <source src ="static/sendpage.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+      
+    </audio>
+		<table>
+            <tr>
+				<td>Email-Username</td>
+				<td><input type="text"  class="inputClass" name="username" value={{var1}}
+					placeholder="User Name"  required="true"/></td>
+			</tr>
+
+			<tr>
+				<td>Password</td>
+				<td><input type="password" class="inputClass" name="password" value={{var2}}
+					placeholder="Password" required="true"/></td>
+			</tr>
+			<tr>
+				<td>To:</td>
+				<td><input type="text" name="username2" value=" " id='to'
+					placeholder="Sender's email" autofocus="true"  required="true"/></td>
+			</tr>
+
+			<tr>
+				<td>Message:</td>
+				<td><input type="text" name="msg" value=" " id='msg'
+					placeholder="Message" required="true" rows="8" cols="8" style="width: 500px; height: 50px;"/></td>
+			</tr>
+		<tr>
+			<td><input type="submit" value="Submit" id='but'/></td>
+			<td><input type="reset" value="Clear" id='but'/></td>
+		</tr>
+	</table>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+<script>
+function hyu(){
+	var user = document.getElementById('user').value
+	console.log(user)
+}
+if(annyang) {      
+	console.log(commands)  	
+    var commands = {
+        'night mode' : function(){
+            let root = document.documentElement;
+            root.style.setProperty('--white','#000');
+            root.style.setProperty('--black','#fff');
+            console.log('yed');
+
+        },
+        'write sender email *tag' : function(variable){
+            let uname = document.getElementById('to')
+            console.log("hj")
+            let res ='@gmail.com'
+            uname.value = variable.split(" ").join("") + res;
+
+        },
+        'write message *tag' : function(variable){
+            let uname = document.getElementById('msg');
+            uname.value = variable;
+
+        },
+		'add more message *tag': function(variable){
+			let uname = document.getElementById('msg');
+			uname.value = uname.value + variable;
+		},
+        'submit form' : function(){
+            document.getElementById('reg').submit();
+
+        },
+		'read the contents': function(){
+			let uname = document.getElementById('to')
+			let pass = document.getElementById('msg')
+			responsiveVoice.speak("Sender's Email."+uname.value)
+			responsiveVoice.speak("Message."+pass.value)
+
+		}
+}
+
+annyang.addCommands(commands);
+annyang.start();
+}
+</script>
+</boby>
+</div>
+</html>
+

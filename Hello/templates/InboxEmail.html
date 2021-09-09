@@ -1,0 +1,92 @@
+{% load static %}
+<html>
+<head>
+	<title>Inbox</title>
+	<link rel="stylesheet" href="{% static 'new.css'%}" />
+</head>
+<div id='aga'>
+<boby>
+	 <h2>Inbox Page</h2>
+	 <audio controls autoplay>
+    <source src ="static/jumanji.ogg" type="audio/ogg">
+    <source src ={{var8}} type="audio/mpeg">
+      Your browser does not support the audio element.
+      
+    </audio>
+	<form action="/gf" method="post" id="reg">
+    {% csrf_token %}
+	
+
+		<table>
+			<tr>
+				<td>Date:</td>
+				<td><input type="text" name="date" value="{{var7}}" size = 40
+					placeholder="Date"  readonly=true/></td>
+			</tr>
+			<tr>
+				<td>From:</td>
+				<td><input type="text" name="from" value="{{var1}}" size= 40
+					placeholder="From" readonly=true/></td>
+			</tr>
+ 
+			<tr>
+				<td>Subject:</td>
+				<td><input type="text" name="subject" value="{{var2}}" size = 40
+					placeholder="Subject" readonly=true/></td>
+			</tr>
+			<tr>
+				<td>Body:</td>
+				<td><textarea id="comment-text" name="text" rows="20" cols="80" readonly = true
+				value = "">{{var3}}</textarea></td>
+			</tr>
+
+			<tr>
+				<td><input type="hidden" value={{var4}} name="hid"></td>
+			</tr>
+			
+			<tr>
+				<td>Action</td>
+				<td><input type="text" name="action" value="" id='action'
+					 autofocus="true" placeholder="Action"  required="true"/></td>
+			</tr>
+		<tr>
+			<td><input type="submit" value="Submit" id='but' /></td>
+			<td><input type="reset" value="Clear" id='but' /></td>
+		</tr>
+	</table>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+<script>
+function hyu(){
+	var user = document.getElementById('user').value
+	console.log(user)
+}
+if(annyang) {      
+	console.log(commands)  	
+    var commands = {
+        'write action *tag' : function(variable){
+            let uname = document.getElementById('action')
+            uname.value = variable.split(" ").join("");
+			document.getElementById('reg').submit();
+
+        },
+        'submit form' : function(){
+			document.getElementById('reg').submit();
+
+        },
+		'read the contents': function(){
+			let uname = document.getElementById('action')
+			responsiveVoice.speak("Action."+uname.value)
+
+		}
+}
+
+annyang.addCommands(commands);
+annyang.start();
+}
+</script>
+</boby>
+</div>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title of the document</title>
+  </head>
+  <body>
+    <audio controls autoplay>
+    <source src ="static/jumanji.ogg" type="audio/ogg">
+    <source src ={{var1}} type="audio/mpeg">
+      Your browser does not support the audio element.
+      
+    </audio>
+    Hi {{var2}}
+    <table>
+			<tr>
+				<td>From:</td>
+				<td><input type="text" name="username" value="a bird and sunlight"
+					readonly=true placeholder="User Name"  /></td>
+			</tr>
+
+			<tr>
+				<td>Subject:</td>
+				<td><input type="text" name="password" value="" readonly=true 
+					placeholder="Password" /></td>
+			</tr>
+			<tr>
+				<td>Message:</td>
+				<td><textarea id="comment-text" name="text" rows="12" cols="50" 
+				readonly=true>{{var3}}</textarea></td>
+			</tr>
+		<tr>
+			<td><input type="submit" value="Submit" /></td>
+			<td><input type="reset" value="Clear" /></td>
+		</tr>
+	</table>
+</form>
+  </body>
+</html>

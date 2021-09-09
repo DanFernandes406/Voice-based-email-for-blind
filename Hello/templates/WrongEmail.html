@@ -1,0 +1,104 @@
+{% load static %}
+<html>
+<head>
+	<title> User Login</title>
+	<link rel="stylesheet" href="{% static 'new.css'%}" />
+</head>
+<div id='aga'>
+<boby>
+	 <h2>UserLogin Page</h2>
+	<form action="/choice" method="post" id="reg">
+    {% csrf_token %}
+	<audio controls autoplay>
+    <source src ="static/jumanji.ogg" type="audio/ogg">
+    <source src ="static/loginnotsuccess.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+      
+    </audio>
+	
+		<table>
+			<tr>
+				<td>Email-Username</td>
+				<td><input type="text" name="username" value="" id='user'
+					placeholder="User Name" autofocus="true"  required="true"/></td>
+			</tr>
+
+			<tr>
+				<td>Password</td>
+				<td><input type="password" name="password" value="" id='password'
+					placeholder="Password" required="true"/></td>
+			</tr>
+			<tr>
+				<td>Action</td>
+				<td><input type="text" name="action" value="" id='action'
+					placeholder="Action"  required="true"/></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" value="0" name="hid"></td>
+			</tr>
+            <tr>
+            <td><p style="color:red"> *Incorrect Credentials</p></td>
+            </tr>
+		<tr>
+			<td><input type="submit" value="Submit" id='but'/></td>
+			<td><input type="reset" value="Clear" id='but'/></td>
+		</tr>
+	</table>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+<script>
+function hyu(){
+	var user = document.getElementById('user').value
+	console.log(user)
+}
+if(annyang) {      
+	console.log(commands)  	
+    var commands = {
+        'night mode' : function(){
+            let root = document.documentElement;
+            root.style.setProperty('--white','#000');
+            root.style.setProperty('--black','#fff');
+            console.log('yed');
+
+        },
+        'write username *tag' : function(variable){
+            let uname = document.getElementById('user')
+            console.log("hj")
+            let res ='@gmail.com'
+            uname.value = variable.split(" ").join("") + res;
+
+        },
+        'write password *tag' : function(variable){
+            let uname = document.getElementById('password')
+            uname.value = variable.split(" ").join("");
+
+        },
+        'write action *tag' : function(variable){
+            let uname = document.getElementById('action')
+            uname.value = variable.split(" ").join("");
+
+        },
+        'submit form' : function(){
+            document.getElementById('reg').submit();
+
+        },
+		'read the contents': function(){
+			let uname = document.getElementById('user')
+			let pass = document.getElementById('password')
+			let act = document.getElementById('action')
+			responsiveVoice.speak("Username."+uname.value)
+			responsiveVoice.speak("password."+pass.value)
+			responsiveVoice.speak("action."+act.value);
+
+		}
+}
+
+annyang.addCommands(commands);
+annyang.start();
+}
+</script>
+</boby>
+</div>
+</html>
